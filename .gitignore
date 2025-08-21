@@ -1,0 +1,30 @@
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Node modules (if any JS tools are added later)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Log files
+*.log
+
+# Build outputs
+dist/
+build/
+
+# OS generated files
+*.orig
