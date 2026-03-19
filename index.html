@@ -3,12 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quantum Buddies - Pioneering quantum computing research and applications in machine learning, scientific discovery, and beyond.">
-    <meta name="keywords" content="quantum computing, machine learning, quantum AI, scientific research, hackathons">
-    <meta name="author" content="Quantum Buddies">
-    <title>Quantum Buddies - Quantum Computing Research</title>
+    <meta name="description" content="Ryoushi builds quantum software, research prototypes, and practical applications with a polished studio-level brand system.">
+    <meta name="keywords" content="quantum computing, quantum software, quantum algorithms, quantum AI, scientific research, Ryoushi">
+    <meta name="author" content="Ryoushi">
+    <title>Ryoushi - Quantum Computing Startup</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
     <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0a0;
+            --accent-red: #c9302c;
+            --accent-dark-red: #8f1f1d;
+            --card-bg: #151515;
+            --border-color: #333;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -18,9 +29,36 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-main);
+            background-color: var(--bg-color);
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 15%, rgba(201, 48, 44, 0.10), transparent 28%),
+                radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.06), transparent 24%),
+                radial-gradient(circle at 72% 70%, rgba(201, 48, 44, 0.08), transparent 26%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.015));
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 100% 100%, 120px 120px;
+            opacity: 0.18;
+            mix-blend-mode: screen;
+            z-index: 0;
         }
         
         .container {
@@ -31,9 +69,9 @@
         
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
             position: fixed;
             top: 0;
             left: 0;
@@ -50,10 +88,19 @@
         }
         
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #4c51bf;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: white;
             text-decoration: none;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
         }
         
         .nav-links {
@@ -64,23 +111,30 @@
         
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-muted);
             font-weight: 500;
             transition: color 0.3s ease;
         }
         
         .nav-links a:hover {
-            color: #4c51bf;
+            color: white;
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(180deg, rgba(7, 7, 7, 0.92), rgba(7, 7, 7, 0.78)), url('colin-carter-w1g2o4J_4Dg-unsplash_copy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: white;
-            text-align: center;
-            padding: 120px 0 80px;
+            text-align: left;
+            padding: 170px 0 110px;
             position: relative;
             overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            z-index: 1;
         }
         
         .hero::before {
@@ -90,151 +144,368 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="15" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            animation: float 20s infinite linear;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 1440 800" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23070707" /><stop offset="55%" stop-color="%23111111" /><stop offset="100%" stop-color="%23000000" /></linearGradient><pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M 64 0 L 0 0 0 64" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23g1)" /><rect width="100%" height="100%" fill="url(%23grid)" /><path d="M0,650 C250,630 380,470 640,450 C930,427 1070,570 1440,520" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="2" /><path d="M-120,760 C280,720 480,270 910,210 C1160,175 1290,280 1540,180" fill="none" stroke="rgba(201,48,44,0.10)" stroke-width="2" /><path d="M-200,800 C400,800 600,200 1600,100 L1600,800 Z" fill="rgba(255,255,255,0.02)" /><path d="M-200,800 C300,700 800,400 1600,300 L1600,800 Z" fill="rgba(255,255,255,0.03)" /><path d="M-200,800 C200,600 1000,500 1600,600 L1600,800 Z" fill="rgba(255,255,255,0.04)" /><path d="M0,0 C400,300 1000,200 1600,0 Z" fill="rgba(255,255,255,0.02)" /></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.92;
+            z-index: 0;
         }
-        
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(201, 48, 44, 0.07), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.03));
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 0;
         }
         
         .hero-content {
             position: relative;
             z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+            gap: 3rem;
+            align-items: center;
+            max-width: 1160px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-copy {
+            max-width: 640px;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-panel {
+            width: 100%;
+            max-width: 460px;
+            padding: 1.5rem 1.5rem 1.25rem;
+            border-radius: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(180deg, rgba(21, 21, 21, 0.84), rgba(11, 11, 11, 0.76));
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(18px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-panel::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 10%, rgba(201, 48, 44, 0.16), transparent 36%), radial-gradient(circle at 80% 90%, rgba(255, 255, 255, 0.05), transparent 30%);
+            pointer-events: none;
+        }
+
+        .hero-panel-label {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .hero-panel-label::before {
+            content: '';
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: var(--accent-red);
+            box-shadow: 0 0 16px rgba(201, 48, 44, 0.7);
+        }
+
+        .hero-panel-caption {
+            position: relative;
+            z-index: 1;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-align: center;
+            margin-top: 0.85rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button.secondary {
+            border-color: rgba(255, 255, 255, 0.14);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .cta-button.secondary:hover {
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            padding: 1rem 1rem 0.9rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 1rem;
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-card span {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+
+        .hero-logo {
+            margin: 0 auto;
+            width: min(100%, 340px);
+            height: 340px;
+            position: relative;
+            animation: pulse-shadow 4s infinite ease-in-out;
+            mix-blend-mode: screen;
+        }
+
+        .hero-logo canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        @keyframes pulse-shadow {
+            0% { filter: drop-shadow(0 0 10px rgba(201, 48, 44, 0.2)); }
+            50% { filter: drop-shadow(0 0 25px rgba(201, 48, 44, 0.6)); }
+            100% { filter: drop-shadow(0 0 10px rgba(201, 48, 44, 0.2)); }
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: clamp(3.2rem, 7vw, 5.3rem);
+            margin-bottom: 0.55rem;
             font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            line-height: 0.95;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.08rem;
+            margin-bottom: 2.5rem;
+            color: var(--text-muted);
+            max-width: 560px;
         }
         
         .cta-button {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
+            background: transparent;
             color: white;
-            padding: 12px 30px;
+            padding: 14px 36px;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 4px;
             font-weight: 600;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid var(--accent-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 48, 44, 0.4), transparent);
+            transition: all 0.5s ease;
         }
         
         .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background: rgba(201, 48, 44, 0.1);
+            box-shadow: 0 0 20px rgba(201, 48, 44, 0.3);
+            border-color: #e5423f;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
         
         /* Main Content */
         main {
-            background: white;
-            min-height: 100vh;
+            background: var(--bg-color);
         }
         
         .section {
-            padding: 80px 0;
+            padding: 100px 0;
+            border-top: 1px solid var(--border-color);
         }
         
         .section-title {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            color: #2d3748;
+            color: white;
             position: relative;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-red);
             margin: 1rem auto;
-            border-radius: 2px;
         }
         
         /* About Section */
         .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center;
         }
         
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #4a5568;
+            color: var(--text-muted);
+            background: linear-gradient(180deg, rgba(21, 21, 21, 0.92), rgba(12, 12, 12, 0.88));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
         }
         
-        .about-image {
-            text-align: center;
-        }
-        
-        .quantum-logo {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
+        .about-text strong {
             color: white;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-pill {
+            display: inline-block;
+            background: rgba(201, 48, 44, 0.1);
+            color: var(--accent-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(201, 48, 44, 0.3);
         }
         
         /* Projects Section */
+        .project-category {
+            margin-bottom: 4rem;
+        }
+
+        .section-intro {
+            max-width: 820px;
+            margin: -0.75rem auto 3rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .project-category h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .project-category h3::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), rgba(201, 48, 44, 0.42));
+        }
+
+        .category-summary {
+            max-width: 760px;
+            color: var(--text-muted);
+            margin: -1rem 0 1.75rem;
+        }
+
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
         }
         
         .project-card {
-            background: white;
-            border-radius: 12px;
+            background: linear-gradient(180deg, rgba(21, 21, 21, 0.96), rgba(13, 13, 13, 0.94));
+            border-radius: 22px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border-top: 4px solid transparent;
-            background-clip: padding-box;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--accent-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
         }
         
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+            border-color: rgba(201, 48, 44, 0.3);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
         }
         
-        .project-card:nth-child(1) { border-top-color: #e53e3e; }
-        .project-card:nth-child(2) { border-top-color: #38a169; }
-        .project-card:nth-child(3) { border-top-color: #3182ce; }
-        .project-card:nth-child(4) { border-top-color: #9f7aea; }
-        .project-card:nth-child(5) { border-top-color: #ed8936; }
-        
-        .project-card h3 {
-            font-size: 1.3rem;
+        .project-card h4 {
+            font-size: 1.18rem;
             margin-bottom: 1rem;
-            color: #2d3748;
+            color: white;
         }
         
         .project-card p {
-            color: #4a5568;
+            color: var(--text-muted);
             line-height: 1.6;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 0.96rem;
         }
         
         .project-links {
@@ -244,70 +515,79 @@
         
         .project-link {
             display: inline-block;
-            background: #f7fafc;
-            color: #4c51bf;
+            color: white;
             padding: 8px 16px;
             text-decoration: none;
-            border-radius: 20px;
+            border-radius: 4px;
             font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #444;
+            background: #222;
         }
         
         .project-link:hover {
-            background: #4c51bf;
-            color: white;
-            transform: translateY(-2px);
+            background: var(--accent-red);
+            border-color: var(--accent-red);
         }
         
         .project-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
-            font-size: 0.9rem;
-            color: #718096;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: #777;
         }
         
         .language-tag {
-            background: #edf2f7;
-            padding: 4px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            background: #222;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: #aaa;
+            border: 1px solid #333;
         }
         
         /* Footer */
         footer {
-            background: #2d3748;
-            color: white;
+            background: linear-gradient(180deg, #090909, #040404);
+            color: var(--text-muted);
             text-align: center;
-            padding: 3rem 0;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border-color);
         }
         
         .footer-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .footer-content h3 {
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
         }
         
         .social-link {
-            color: white;
+            color: var(--text-muted);
             font-size: 1.5rem;
             transition: color 0.3s ease;
             text-decoration: none;
         }
         
         .social-link:hover {
-            color: #667eea;
+            color: white;
         }
         
         /* Responsive Design */
@@ -315,25 +595,51 @@
             .nav-links {
                 display: none;
             }
-            
-            .hero h1 {
-                font-size: 2rem;
+
+            .hero {
+                padding: 150px 0 90px;
+                background-attachment: scroll;
             }
-            
-            .about-content {
+
+            .hero-content {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
+
+            .hero-copy {
+                max-width: none;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
             
-            .quantum-logo {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
+            .hero h1 {
+                letter-spacing: 0.18em;
+                font-size: 2.8rem;
+            }
+
+            .hero-logo {
+                height: 340px;
+            }
+
+            .project-category h3 {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.75rem;
             }
             
             .footer-content {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 2rem;
             }
             
             .projects-grid {
@@ -349,8 +655,8 @@
         /* Loading animation */
         .fade-in {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .fade-in.visible {
@@ -362,7 +668,13 @@
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo">⚛️ Quantum Buddies</a>
+            <a href="#" class="logo">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="100" fill="#0a0a0a" />
+                    <image href="IMG_7822.png" x="0" y="0" width="100" height="100" preserveAspectRatio="xMidYMid meet" />
+                </svg>
+                RYOUSHI
+            </a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -375,9 +687,36 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Quantum Buddies</h1>
-                <p>Pioneering the future of quantum computing through cutting-edge research, innovative applications, and collaborative exploration of quantum machine learning.</p>
-                <a href="#projects" class="cta-button">Explore Our Research</a>
+                <div class="hero-copy fade-in">
+                    <span class="brand-pill">Quantum software studio</span>
+                    <h1>RYOUSHI</h1>
+                    <p>We design quantum software, research prototypes, and system-level tools with a restrained, architectural visual identity inspired by the best of the field.</p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="cta-button">Explore Our Work</a>
+                        <a href="#about" class="cta-button secondary">About Ryoushi</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <strong>Quantum-first</strong>
+                            <span>Research-led applications and algorithms.</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>Studio polish</strong>
+                            <span>Corporate clarity with a distinctive visual language.</span>
+                        </div>
+                        <div class="stat-card">
+                            <strong>Practical output</strong>
+                            <span>Hackathons, demos, and applied prototype work.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual fade-in">
+                    <div class="hero-panel">
+                        <div class="hero-panel-label">Live Bloch Sphere Identity</div>
+                        <div id="hero-3d-logo" class="hero-logo"></div>
+                        <p class="hero-panel-caption">A continuous lattice projection with Bloch meridians and a moving oracle particle.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -386,98 +725,121 @@
         <section id="about" class="section">
             <div class="container">
                 <h2 class="section-title fade-in">About Us</h2>
-                <div class="about-content">
-                    <div class="about-text fade-in">
+                <div class="about-content fade-in">
+                    <div class="about-text">
+                        <span class="brand-pill">RYOUSHI: QUANTUM BUDDIES</span>
                         <p>
-                            <strong>Quantum Buddies</strong> is a research-focused organization dedicated to advancing the field of quantum computing and its applications in machine learning, scientific discovery, and real-world problem solving.
+                            <strong>Ryoushi</strong> is the primary startup brand: a compact quantum software studio focused on practical algorithms, clear systems thinking, and elegant product execution.
                         </p>
                         <p>
-                            Our team combines theoretical quantum computing knowledge with practical implementation skills, tackling complex challenges through innovative hybrid quantum-classical approaches. We actively participate in hackathons, research collaborations, and open-source development to push the boundaries of what's possible with quantum technologies.
+                            <strong>Quantum Buddies</strong> remains the research and community-facing initiative underneath that umbrella, where we explore hybrid quantum-classical ideas, hackathon submissions, and open-source prototypes.
                         </p>
                         <p>
-                            From quantum attention mechanisms for scientific discovery to hybrid neural networks for medical diagnosis, our work spans multiple domains, always with a focus on practical applications and meaningful impact.
+                            The goal is to make advanced quantum work feel rigorous, credible, and visually distinctive — more like a modern quantum software company than a dense academic poster.
                         </p>
-                    </div>
-                    <div class="about-image fade-in">
-                        <div class="quantum-logo">
-                            ⚛️
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section" style="background-color: #f7fafc;">
+        <section id="projects" class="section">
             <div class="container">
-                <h2 class="section-title fade-in">Our Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card fade-in">
-                        <h3>🌟 Quasar: Quantum Attention for Scientific Discovery</h3>
-                        <p>
-                            A groundbreaking research project investigating hybrid quantum-classical models for scientific discovery. Features a Q-UDiT (Quantum U-Net Diffusion Transformer) with quantum-native attention mechanisms based on Quantinuum's Quixer architecture.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/Quasar-QUantum-Attention-for-Scientific-ARt" class="project-link" target="_blank">View Project</a>
+                <h2 class="section-title fade-in">Our Portfolio</h2>
+                <p class="section-intro fade-in">A curated set of research prototypes and competition submissions, presented as a clean two-track portfolio instead of a dense project dump.</p>
+                
+                <div class="project-category">
+                    <h3 class="fade-in">Ryoushi</h3>
+                    <p class="category-summary fade-in">Flagship startup-facing work with a focus on quantum algorithms, tooling, and systems-level experimentation.</p>
+                    <div class="projects-grid">
+                        <!-- Placeholder for Ryoushi specific projects -->
+                        <div class="project-card fade-in">
+                            <h4>🌟 Quasar: Quantum Attention for Scientific Discovery</h4>
+                            <p>
+                                A groundbreaking research project investigating hybrid quantum-classical models for scientific discovery. Features a Q-UDiT (Quantum U-Net Diffusion Transformer) with quantum-native attention mechanisms based on Quantinuum's Quixer architecture.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Quantum-Buddies/Quasar-QUantum-Attention-for-Scientific-ARt" class="project-link" target="_blank">View Project</a>
+                            </div>
+                            <div class="project-meta">
+                                <span class="language-tag">Python</span>
+                                <span>🔬 Scientific ML</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Python</span>
-                            <span>🔬 Scientific ML</span>
+
+                        <div class="project-card fade-in">
+                            <h4>🧠 Quantum Continuous Thought Machines</h4>
+                            <p>
+                                A PyTorch-based implementation of hybrid quantum-classical continuous-thought machines, integrating quantum circuits into recurrent memory mechanisms for complex sequential tasks including RL, classification, and maze solving.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Quantum-Buddies/quantum-continuous-thought-machines" class="project-link" target="_blank">View Project</a>
+                            </div>
+                            <div class="project-meta">
+                                <span class="language-tag">Python</span>
+                                <span>🤖 Quantum ML</span>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="project-card fade-in">
-                        <h3>🏆 YQuantum Hackathon 2025</h3>
-                        <p>
-                            Our submission for the YQuantum Hackathon 2025, showcasing innovative quantum computing solutions and demonstrating practical applications of quantum algorithms in competitive environments.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/Quantum-bits-YQuantum-2025" class="project-link" target="_blank">View Project</a>
+                <div class="project-category">
+                    <h3 class="fade-in">Quantum Buddies</h3>
+                    <p class="category-summary fade-in">Research and hackathon work that shows the team’s applied quantum ML and scientific computing range.</p>
+                    <div class="projects-grid">
+                        <div class="project-card fade-in">
+                            <h4>🏆 Bradford Quantum Hackathon 2025</h4>
+                            <p>
+                                <strong>Grand Prix & 1st Place Medicine.</strong> This project implements a Quantum Transformer (Quixer) for genomic sequence modeling (Next-Base Prediction). It compares the performance of a quantum-enhanced attention mechanism (LCU + QSVT) against a classical transformer baseline on genomic data.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Quantum-Buddies/Bradford-Quantum-Hackathon-2025" class="project-link" target="_blank">View Project</a>
+                            </div>
+                            <div class="project-meta">
+                                <span class="language-tag">Python</span>
+                                <span>🏅 Hackathon</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Jupyter Notebook</span>
-                            <span>🏅 Hackathon</span>
-                        </div>
-                    </div>
 
-                    <div class="project-card fade-in">
-                        <h3>🏥 Quantum Breast Cancer Classification</h3>
-                        <p>
-                            A quantum-classical hybrid neural network for medical diagnosis, developed for the FLIQ-Q Hackathon. Implements Variational Quantum Algorithms (VQAs) for enhanced breast cancer classification with explainable AI features.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/FLIQ-Q-Hackathon-UNICC-Challenge-QuantumBreast-Cancer-Classification-Quantum-Buddies-Submission" class="project-link" target="_blank">View Project</a>
+                        <div class="project-card fade-in">
+                            <h4>🏆 YQuantum Hackathon 2025</h4>
+                            <p>
+                                Our submission for the YQuantum Hackathon 2025, showcasing innovative quantum computing solutions and demonstrating practical applications of quantum algorithms in competitive environments.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Quantum-Buddies/Quantum-bits-YQuantum-2025" class="project-link" target="_blank">View Project</a>
+                            </div>
+                            <div class="project-meta">
+                                <span class="language-tag">Jupyter Notebook</span>
+                                <span>🏅 Hackathon</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Jupyter Notebook</span>
-                            <span>⚕️ Healthcare AI</span>
-                        </div>
-                    </div>
 
-                    <div class="project-card fade-in">
-                        <h3>🧠 Quantum Continuous Thought Machines</h3>
-                        <p>
-                            A PyTorch-based implementation of hybrid quantum-classical continuous-thought machines, integrating quantum circuits into recurrent memory mechanisms for complex sequential tasks including RL, classification, and maze solving.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/quantum-continuous-thought-machines" class="project-link" target="_blank">View Project</a>
+                        <div class="project-card fade-in">
+                            <h4>🏥 Quantum Breast Cancer Classification</h4>
+                            <p>
+                                A quantum-classical hybrid neural network for medical diagnosis, developed for the FLIQ-Q Hackathon. Implements Variational Quantum Algorithms (VQAs) for enhanced breast cancer classification with explainable AI features.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Quantum-Buddies/FLIQ-Q-Hackathon-UNICC-Challenge-QuantumBreast-Cancer-Classification-Quantum-Buddies-Submission" class="project-link" target="_blank">View Project</a>
+                            </div>
+                            <div class="project-meta">
+                                <span class="language-tag">Jupyter Notebook</span>
+                                <span>⚕️ Healthcare AI</span>
+                            </div>
                         </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Python</span>
-                            <span>🤖 Quantum ML</span>
-                        </div>
-                    </div>
 
-                    <div class="project-card fade-in">
-                        <h3>🔬 QPoland Quantum Hackathon</h3>
-                        <p>
-                            Our submission for the QPoland Quantum Hackathon featuring a hybrid approach combining Weisfeiler-Lehman graph kernels with Continuous-Time Quantum Walks (CTQW) for molecular graph classification, advancing quantum machine learning in computational chemistry.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/qpoland-quantum-hackathon" class="project-link" target="_blank">View Project</a>
-                        </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Python</span>
-                            <span>🏅 Hackathon</span>
+                        <div class="project-card fade-in">
+                            <h4>🔬 QPoland Quantum Hackathon</h4>
+                            <p>
+                                Our submission for the QPoland Quantum Hackathon featuring a hybrid approach combining Weisfeiler-Lehman graph kernels with Continuous-Time Quantum Walks (CTQW) for molecular graph classification, advancing quantum machine learning in computational chemistry.
+                            </p>
+                            <div class="project-links">
+                                <a href="https://github.com/Quantum-Buddies/qpoland-quantum-hackathon" class="project-link" target="_blank">View Project</a>
+                            </div>
+                            <div class="project-meta">
+                                <span class="language-tag">Python</span>
+                                <span>🏅 Hackathon</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -489,15 +851,15 @@
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <h3>Quantum Buddies</h3>
+                    <h3>RYOUSHI</h3>
                     <p>Advancing quantum computing research and applications</p>
                 </div>
                 <div class="social-links">
-                    <a href="https://github.com/Quantum-Buddies" class="social-link" target="_blank">📚</a>
-                    <a href="mailto:contact@quantumbuddies.org" class="social-link">📧</a>
+                    <a href="https://github.com/Quantum-Buddies" class="social-link" target="_blank">GitHub 📚</a>
+                    <a href="mailto:contact@quantumbuddies.org" class="social-link">Email 📧</a>
                 </div>
             </div>
-            <p>&copy; 2025 Quantum Buddies. Licensed under MIT License.</p>
+            <p>&copy; 2025 Ryoushi. Licensed under MIT License.</p>
         </div>
     </footer>
 
@@ -538,11 +900,175 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
             } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
             }
         });
+
+        // Three.js 3D Logo Setup
+        const init3DLogo = () => {
+            const container = document.getElementById('hero-3d-logo');
+            if (!container || !window.THREE) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.z = 20;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            const logoGroup = new THREE.Group();
+            scene.add(logoGroup);
+
+            logoGroup.scale.set(0.95, 0.95, 0.95);
+
+            const shellGroup = new THREE.Group();
+            const shellMaterial = new THREE.LineBasicMaterial({
+                color: 0xa94a3f,
+                transparent: true,
+                opacity: 0.74,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false
+            });
+
+            const shellCount = 35;
+            for (let i = 0; i < shellCount; i++) {
+                const curve = new THREE.EllipseCurve(0, 0, 8.8, 6.2, 0, Math.PI * 2, false, 0);
+                const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(120));
+                const ring = new THREE.Line(geometry, shellMaterial);
+                
+                // Fan out around the X axis to form the shell, matching the reference image where left/right points converge
+                const progress = i / (shellCount - 1);
+                // Fan from almost -90 to +90 degrees for a full sphere feel
+                const angle = -Math.PI*0.45 + progress * (Math.PI*0.9); 
+                
+                ring.rotation.x = angle;
+                
+                // Keep the ellipses aligned horizontally, so minimal other rotations
+                ring.rotation.y = 0;
+                ring.rotation.z = 0;
+                
+                shellGroup.add(ring);
+            }
+            logoGroup.add(shellGroup);
+
+            const latticeGroup = new THREE.Group();
+            const latticeRoot = new THREE.Group();
+            latticeRoot.position.set(0, 0, 0.12);
+
+            const latticeMatBase = new THREE.MeshBasicMaterial({ color: 0xc44c40, transparent: true, opacity: 0.95 });
+            const latticeSpacing = 0.95;
+            for (let y = -4; y <= 4; y++) {
+                for (let x = -4; x <= 4; x++) {
+                    const dist = Math.max(Math.abs(x), Math.abs(y));
+                    const distEuclid = Math.sqrt(x*x + y*y);
+                    if (distEuclid > 4.5) continue; // Make it circular
+
+                    let size;
+                    let opacity;
+                    
+                    if (dist <= 1) { // Central 3x3 block is large and distinct
+                        size = 0.65;
+                        opacity = 1;
+                    } else if (dist === 2) {
+                        size = 0.25;
+                        opacity = 0.8;
+                    } else if (dist === 3) {
+                        size = 0.15;
+                        opacity = 0.5;
+                    } else {
+                        size = 0.08;
+                        opacity = 0.3;
+                    }
+
+                    const square = new THREE.Mesh(
+                        new THREE.PlaneGeometry(size, size),
+                        latticeMatBase.clone()
+                    );
+                    square.material.opacity = opacity;
+                    square.position.set(x * latticeSpacing, y * latticeSpacing, 0);
+                    latticeRoot.add(square);
+                }
+            }
+            latticeGroup.add(latticeRoot);
+
+            const latticeGlow = new THREE.Points(
+                new THREE.BufferGeometry().setFromPoints(
+                    latticeRoot.children.map(child => child.position.clone())
+                ),
+                new THREE.PointsMaterial({ color: 0xb5473d, size: 0.09, transparent: true, opacity: 0.25 })
+            );
+            latticeGroup.add(latticeGlow);
+            logoGroup.add(latticeGroup);
+
+            const orbitGroup = new THREE.Group();
+            // The white orbit is a single large loop, major axis horizontal-ish, rotated slightly
+            const orbitCurve = new THREE.EllipseCurve(0, 0, 9.8, 6.5, 0, Math.PI * 2, false, 0);
+            const orbitGeometry = new THREE.BufferGeometry().setFromPoints(orbitCurve.getPoints(150));
+            const orbitMaterial = new THREE.LineBasicMaterial({
+                color: 0xffffff,
+                transparent: true,
+                opacity: 0.9,
+                depthWrite: false,
+                linewidth: 2 // Has no effect in most WebGL implementations, but good practice
+            });
+            const orbitLine = new THREE.Line(orbitGeometry, orbitMaterial);
+            
+            // Adjust the rotation of the white orbit to match the reference image
+            // In the image, it's tilted up on the right and down on the left, but intersects the poles
+            const orbitEuler = new THREE.Euler(0.6, 0.4, 0.35);
+            orbitLine.rotation.copy(orbitEuler);
+            orbitGroup.add(orbitLine);
+            
+            // Ensure white orbit renders on top
+            orbitGroup.renderOrder = 999;
+
+            const orbitParticle = new THREE.Mesh(
+                new THREE.SphereGeometry(0.55, 32, 32),
+                new THREE.MeshBasicMaterial({ color: 0xffffff })
+            );
+            orbitGroup.add(orbitParticle);
+            logoGroup.add(orbitGroup);
+
+            const subtleOrbitalTilt = new THREE.Group();
+            subtleOrbitalTilt.add(logoGroup);
+            scene.add(subtleOrbitalTilt);
+
+            const baseOrbit = new THREE.Vector3();
+
+            // Animation Loop
+            const clock = new THREE.Clock();
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                const time = clock.getElapsedTime();
+
+                const breath = 1 + Math.sin(time * 1.25) * 0.025;
+                shellGroup.scale.set(breath, breath, breath);
+                latticeGroup.scale.set(1 + Math.sin(time * 1.1) * 0.02, 1 + Math.sin(time * 1.1) * 0.02, 1);
+                orbitGroup.scale.set(1 + Math.sin(time * 1.1) * 0.018, 1 + Math.sin(time * 1.1) * 0.018, 1);
+                subtleOrbitalTilt.rotation.z = -0.02;
+
+                const orbitPhase = (time * 0.12) % 1;
+                const orbitPoint = orbitCurve.getPoint(orbitPhase);
+                baseOrbit.set(orbitPoint.x, orbitPoint.y, 0.25).applyEuler(orbitEuler);
+                orbitParticle.position.copy(baseOrbit);
+
+                renderer.render(scene, camera);
+            };
+            
+            animate();
+        };
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init3DLogo);
+        } else {
+            init3DLogo();
+        }
     </script>
 </body>
 </html>
