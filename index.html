@@ -1,548 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quantum Buddies - Pioneering quantum computing research and applications in machine learning, scientific discovery, and beyond.">
-    <meta name="keywords" content="quantum computing, machine learning, quantum AI, scientific research, hackathons">
-    <meta name="author" content="Quantum Buddies">
-    <title>Quantum Buddies - Quantum Computing Research</title>
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4c51bf;
-            text-decoration: none;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: #4c51bf;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 120px 0 80px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="30" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="15" r="1" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
-            animation: float 20s infinite linear;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-100px) rotate(360deg); }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .cta-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Main Content */
-        main {
-            background: white;
-            min-height: 100vh;
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #2d3748;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 1rem auto;
-            border-radius: 2px;
-        }
-        
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #4a5568;
-        }
-        
-        .about-image {
-            text-align: center;
-        }
-        
-        .quantum-logo {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            margin: 0 auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border-top: 4px solid transparent;
-            background-clip: padding-box;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-        
-        .project-card:nth-child(1) { border-top-color: #e53e3e; }
-        .project-card:nth-child(2) { border-top-color: #38a169; }
-        .project-card:nth-child(3) { border-top-color: #3182ce; }
-        .project-card:nth-child(4) { border-top-color: #9f7aea; }
-        .project-card:nth-child(5) { border-top-color: #ed8936; }
-        
-        .project-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: #2d3748;
-        }
-        
-        .project-card p {
-            color: #4a5568;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .project-link {
-            display: inline-block;
-            background: #f7fafc;
-            color: #4c51bf;
-            padding: 8px 16px;
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .project-link:hover {
-            background: #4c51bf;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .project-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
-            font-size: 0.9rem;
-            color: #718096;
-        }
-        
-        .language-tag {
-            background: #edf2f7;
-            padding: 4px 8px;
-            border-radius: 10px;
-            font-size: 0.8rem;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2d3748;
-            color: white;
-            text-align: center;
-            padding: 3rem 0;
-        }
-        
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-link {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            color: #667eea;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .quantum-logo {
-                width: 200px;
-                height: 200px;
-                font-size: 3rem;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* Loading animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <title>Ryoushi | Quantum Research Collective</title>
+    <meta name="description"
+        content="Ryoushi — a quantum research collective building Quaggle, a browser-first public hub to build, run, and rank quantum solutions.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
-        <nav class="container">
-            <a href="#" class="logo">⚛️ Quantum Buddies</a>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="https://github.com/Quantum-Buddies" target="_blank">GitHub</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Quantum Buddies</h1>
-                <p>Pioneering the future of quantum computing through cutting-edge research, innovative applications, and collaborative exploration of quantum machine learning.</p>
-                <a href="#projects" class="cta-button">Explore Our Research</a>
-            </div>
+<body>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Cinematic Film Grain -->
+    <div class="film-grain"></div>
+
+    <!-- Dynamic Background Architecture -->
+    <div class="bg-layer"></div>
+    <div class="bg-overlay"></div>
+    <div id="ambient-overlay"></div>
+
+
+
+    <!-- HUD Navigation -->
+    <nav class="hud-nav" id="mainNav">
+        <div class="container nav-container">
+            <a href="#hero" class="ryoushi-brand">
+                <img src="images/brand_logo.png" alt="Ryoushi Logo" class="nav-logo">
+                <span class="brand-text">RYOUSHI</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero" data-section="hero" class="active">Overview</a></li>
+                <li><a href="#about" data-section="about">About</a></li>
+                <li><a href="#problem" data-section="problem">The Problem</a></li>
+                <li><a href="#solution" data-section="solution">Quaggle</a></li>
+                <li><a href="#research" data-section="research">Research</a></li>
+                <li><a href="#team" data-section="team">Team</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
 
     <main>
-        <section id="about" class="section">
+
+        <!-- ==========================================
+             SECTION 1: HERO — "The Arrival"
+             Mood: Monumental calm, sand dune + cosmos
+             ========================================== -->
+        <section id="hero" data-mood="arrival">
+            <div class="container hero-content">
+                <p class="label-sm" style="margin-bottom: 1.5rem;">Quantum Research Collective</p>
+                <h1 class="hero-tagline">Pioneering hybrid<br>quantum architectures.</h1>
+                <p class="hero-sub">
+                    We bridge the gap between computational physics and advanced machine learning — building the tools
+                    that make quantum development accessible, reproducible, and impactful.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#solution" class="btn-primary">Discover Quaggle</a>
+                    <a href="https://github.com/Quantum-Buddies" target="_blank" rel="noopener" class="btn-primary"
+                        style="background: transparent; border-color: rgba(255,255,255,0.15);">View Open Source</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 2: ABOUT — "The Origin"
+             Mood: Zen minimalism, contemplative
+             ========================================== -->
+        <section id="about" data-mood="origin">
             <div class="container">
-                <h2 class="section-title fade-in">About Us</h2>
-                <div class="about-content">
-                    <div class="about-text fade-in">
+                <p class="label-sm section-heading" style="margin-bottom: 1rem;">Our Origin</p>
+                <h2 class="display-md section-heading" style="margin-bottom: 0.5rem;">From Quantum Buddies to Ryoushi.
+                </h2>
+                <div class="section-divider"></div>
+                <div class="about-prose fade-up">
+                    <p style="margin-bottom: 1.5rem;">
+                        What began as a shared obsession between three researchers — scattered across Imperial College
+                        London, the University of Sheffield, and the University of Leeds — became something larger.
+                    </p>
+                    <p style="margin-bottom: 1.5rem;">
+                        We started as <em>Quantum Buddies</em>, a name that captured our friendship. But our ambitions
+                        outgrew it. <strong>Ryoushi</strong> (量子, "Quantum" in Japanese) represents who we've become: a
+                        research collective that refuses to treat quantum computing as an abstraction.
+                    </p>
+                    <p>
+                        We build things. We run experiments. We publish our failures alongside our successes. And we
+                        believe that the next decade of quantum computing won't be shaped by the biggest companies — it
+                        will be shaped by the sharpest communities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 3: PROBLEM — "The Fracture"
+             Mood: Dramatic tension, crimson bleeds in
+             ========================================== -->
+        <section id="problem" data-mood="fracture">
+            <div class="container">
+                <p class="label-sm section-heading" style="margin-bottom: 1rem;">The Problem</p>
+                <h2 class="display-md section-heading">Three fractures in the quantum ecosystem.</h2>
+                <div class="section-divider"></div>
+                <div class="problem-grid">
+                    <div class="glass-panel glass-panel--crimson gap-card">
+                        <span class="gap-number">Gap 01 — Creation</span>
+                        <h3>Vendor Lock-In</h3>
                         <p>
-                            <strong>Quantum Buddies</strong> is a research-focused organization dedicated to advancing the field of quantum computing and its applications in machine learning, scientific discovery, and real-world problem solving.
-                        </p>
-                        <p>
-                            Our team combines theoretical quantum computing knowledge with practical implementation skills, tackling complex challenges through innovative hybrid quantum-classical approaches. We actively participate in hackathons, research collaborations, and open-source development to push the boundaries of what's possible with quantum technologies.
-                        </p>
-                        <p>
-                            From quantum attention mechanisms for scientific discovery to hybrid neural networks for medical diagnosis, our work spans multiple domains, always with a focus on practical applications and meaningful impact.
+                            Visual tools stay tied to one vendor's SDK. Learning is possible, but cross-provider
+                            building is exponentially harder. Every platform speaks a different dialect.
                         </p>
                     </div>
-                    <div class="about-image fade-in">
-                        <div class="quantum-logo">
-                            ⚛️
-                        </div>
+                    <div class="glass-panel glass-panel--crimson gap-card">
+                        <span class="gap-number">Gap 02 — Execution</span>
+                        <h3>Fragmented Access</h3>
+                        <p>
+                            Different QPUs require different accounts, APIs, pricing models, and hardware-specific
+                            workflows. Running the same circuit on two backends shouldn't require two engineering
+                            efforts.
+                        </p>
+                    </div>
+                    <div class="glass-panel glass-panel--crimson gap-card">
+                        <span class="gap-number">Gap 03 — Community</span>
+                        <h3>No Reproducibility</h3>
+                        <p>
+                            Experiments are hard to compare or build on because metadata, benchmarking, and
+                            result-sharing are inconsistent. Breakthroughs die as dead-end PDFs.
+                        </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="projects" class="section" style="background-color: #f7fafc;">
+        <!-- ==========================================
+             SECTION 4: SOLUTION — "Quaggle"
+             Mood: Resolution, crimson → purple harmony
+             ========================================== -->
+        <section id="solution" data-mood="constellation">
+            <div class="container" style="text-align: center;">
+                <p class="label-sm section-heading" style="margin-bottom: 1rem;">The Solution</p>
+                <h2 class="display-md section-heading">One Workspace. Any Hardware.</h2>
+                <div class="section-divider" style="margin: 2rem auto;"></div>
+
+                <!-- Hero panel -->
+                <div class="solution-panel">
+                    <span class="product-label">A Product by Ryoushi</span>
+                    <h3>Quaggle</h3>
+                    <p class="body-md" style="margin: 0 auto 1.5rem; text-align: center; max-width: 700px;">
+                        The public hub to build, run, and rank quantum solutions. One workspace to design circuits,
+                        route jobs, capture reproducible runs, and publish benchmarkable results.
+                    </p>
+                </div>
+
+                <!-- 5-Step Workflow Pipeline -->
+                <div class="workflow-pipeline fade-up" style="margin-top: 3rem;">
+                    <div class="workflow-step">
+                        <span class="workflow-number">01</span>
+                        <h4>Design</h4>
+                        <p>Browser-native builder with parameters and broad format support.</p>
+                    </div>
+                    <div class="workflow-connector"></div>
+                    <div class="workflow-step">
+                        <span class="workflow-number">02</span>
+                        <h4>Run</h4>
+                        <p>Submit to simulators or QPUs through one unified execution layer.</p>
+                    </div>
+                    <div class="workflow-connector"></div>
+                    <div class="workflow-step">
+                        <span class="workflow-number">03</span>
+                        <h4>Verify</h4>
+                        <p>Capture seeds, logs, outputs, cost, and timing for every run.</p>
+                    </div>
+                    <div class="workflow-connector"></div>
+                    <div class="workflow-step">
+                        <span class="workflow-number">04</span>
+                        <h4>Publish</h4>
+                        <p>Turn experiments into project pages with datasets and citations.</p>
+                    </div>
+                    <div class="workflow-connector"></div>
+                    <div class="workflow-step">
+                        <span class="workflow-number">05</span>
+                        <h4>Compete</h4>
+                        <p>Launch leaderboards and verified profiles around real outcomes.</p>
+                    </div>
+                </div>
+
+                <!-- Product Features Grid -->
+                <div style="margin-top: 4rem; text-align: left;">
+                    <p class="label-sm section-heading" style="margin-bottom: 1rem;">Product</p>
+                    <h2 class="display-md section-heading" style="margin-bottom: 0.5rem;">Built for Reproducible
+                        Research</h2>
+                    <div class="section-divider"></div>
+                    <p class="body-md" style="margin-bottom: 2.5rem;">
+                        Simple enough for classrooms, strong enough for repeatable research workflows.
+                    </p>
+                </div>
+                <div class="product-features-grid">
+                    <div class="glass-panel glass-panel--purple product-feature-card">
+                        <h4>Core Builder</h4>
+                        <p>Supports OpenQASM, Qiskit, and Cirq with full parameter control.</p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple product-feature-card">
+                        <h4>Run Intelligence</h4>
+                        <p>Metadata-rich logs: backend, seed, shots, time, and cost per run.</p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple product-feature-card">
+                        <h4>Competition Engine</h4>
+                        <p>Leaderboards for accuracy, latency, and shot efficiency.</p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple product-feature-card">
+                        <h4>Publishing Layer</h4>
+                        <p>Project pages with dataset attachments and forking.</p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple product-feature-card">
+                        <h4>Talent Discovery</h4>
+                        <p>Verified profiles built on real quantum experiment history.</p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple product-feature-card">
+                        <h4>Enterprise Grade</h4>
+                        <p>Private workspaces, audit logs, and governed access.</p>
+                    </div>
+                </div>
+
+                <!-- Why We Win -->
+                <div style="margin-top: 4rem; text-align: left;">
+                    <p class="label-sm section-heading" style="margin-bottom: 1rem;">Why Quaggle</p>
+                    <h2 class="display-md section-heading" style="margin-bottom: 0.5rem;">Work faster. Get noticed.</h2>
+                    <div class="section-divider"></div>
+                </div>
+                <ul class="solution-features" style="text-align: left; margin-top: 1.5rem; max-width: 800px;">
+                    <li><strong>Easy setup & highly interpretable</strong> — Abstract vendor complexity across IBM,
+                        IonQ, Rigetti, QuEra, OQC and future providers without forcing users to abandon familiar SDKs.
+                    </li>
+                    <li><strong>Route-to-best execution</strong> — Backend-aware transpilation and cost or latency
+                        estimation help users choose the cheapest or fastest viable path per workload.</li>
+                    <li><strong>Reproducible by design</strong> — Pinned configs, immutable artifacts, seeds, logs, and
+                        content-addressed results make every run auditable and re-runnable.</li>
+                    <li><strong>Connected with the research community</strong> — Public projects, datasets,
+                        competitions, and profiles create a content graph that gets more valuable as more builders
+                        participate.</li>
+                </ul>
+
+                <!-- Market Context -->
+                <div class="market-stats fade-up" style="margin-top: 4rem;">
+                    <div class="market-stat">
+                        <span class="stat-value">$1B+</span>
+                        <span class="stat-label">Quantum revenue by end-2025</span>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-value">$2B</span>
+                        <span class="stat-label">Startup funding in 2024 (+50% YoY)</span>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-value">$54B</span>
+                        <span class="stat-label">Global national investments</span>
+                    </div>
+                    <div class="market-stat">
+                        <span class="stat-value">$0.9–2.0T</span>
+                        <span class="stat-label">Economic value at stake by 2035</span>
+                    </div>
+                </div>
+                <p class="body-md"
+                    style="margin-top: 1.5rem; text-align: center; font-size: 0.75rem; color: var(--ash);">
+                    Source: McKinsey Quantum Technology Monitor 2025, World Economic Forum Quantum Economy Blueprint
+                </p>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 5: RESEARCH — "The Lab"
+             Mood: Analytical, technical, steel grey
+             ========================================== -->
+        <section id="research" data-mood="lab">
             <div class="container">
-                <h2 class="section-title fade-in">Our Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card fade-in">
-                        <h3>🌟 Quasar: Quantum Attention for Scientific Discovery</h3>
-                        <p>
-                            A groundbreaking research project investigating hybrid quantum-classical models for scientific discovery. Features a Q-UDiT (Quantum U-Net Diffusion Transformer) with quantum-native attention mechanisms based on Quantinuum's Quixer architecture.
+                <p class="label-sm section-heading" style="margin-bottom: 1rem;">Active Research</p>
+                <h2 class="display-md section-heading">Investigations in progress.</h2>
+                <div class="section-divider"></div>
+                <p class="body-md" style="margin-bottom: 3rem; text-align: left; max-width: 800px;">
+                    We are moving past theoretical whitepapers to engineer high-performance systems. Our open-source repositories focus on bridging classical machine learning architectures with quantum workflows, pushing simulation limits, and making quantum error correction scalable.
+                </p>
+                <div class="research-grid" style="grid-template-columns: 1fr; gap: 2rem;">
+                    <div class="glass-panel research-card" style="text-align: left; padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.75rem; letter-spacing: -0.02em;"><span class="status-dot"></span>Syndrome-Net / QEC & Reinforcement Learning</h3>
+                        <p class="body-md" style="margin-bottom: 1.5rem;">
+                            Syndrome-Net isn't just another circuit simulator; it is a ground-up framework designed to fundamentally rethink how we approach quantum error correction. By treating decoding and calibration not as static lookup tables, but as continuous topological control problems, we open the door for adaptive, intelligent agents.
                         </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/Quasar-QUantum-Attention-for-Scientific-ARt" class="project-link" target="_blank">View Project</a>
-                        </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Python</span>
-                            <span>🔬 Scientific ML</span>
-                        </div>
+                        <p class="body-md" style="color: var(--ash);">
+                            We have integrated state-of-the-art Deep Reinforcement Learning—specifically TITANS, Proximal Policy Optimization (PPO), and Soft Actor-Critic (SAC)—directly into the error correction loops. The framework fully supports surface codes, qLDPC, and advanced colour codes. It allows researchers to seamlessly iterate on new code discoveries, training autonomous models that can adapt to asymmetrical and fluctuating noise profiles inherent in modern NISQ hardware.
+                        </p>
                     </div>
-
-                    <div class="project-card fade-in">
-                        <h3>🏆 YQuantum Hackathon 2025</h3>
-                        <p>
-                            Our submission for the YQuantum Hackathon 2025, showcasing innovative quantum computing solutions and demonstrating practical applications of quantum algorithms in competitive environments.
+                    <div class="glass-panel research-card" style="text-align: left; padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.75rem; letter-spacing: -0.02em;"><span class="status-dot"></span>QuantumForge / HPC Simulation Engine</h3>
+                        <p class="body-md" style="margin-bottom: 1.5rem;">
+                            QuantumForge serves as the foundational High-Performance Computing (HPC) engine for our most complex algorithms, engineered to eliminate the bottleneck between high-level quantum abstraction and low-level classical execution. Written entirely in standard-compliant Rust, it acts as an ultra-fast backend capable of simulating 26-qubit statevectors directly on consumer-grade hardware.
                         </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/Quantum-bits-YQuantum-2025" class="project-link" target="_blank">View Project</a>
-                        </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Jupyter Notebook</span>
-                            <span>🏅 Hackathon</span>
-                        </div>
+                        <p class="body-md" style="color: var(--ash);">
+                            By effectively circumventing the limitations of naive Python-based execution environments, QuantumForge delivers a nearly 4,000x speedup across crucial workflows. This bare-metal performance enables us to rapidly prototype and execute resource-intensive algorithms like the Generative Quantum Eigensolver (GQE) and Variational Quantum Eigensolver (VQE), driving precise ground-state estimations and complex molecular simulations.
+                        </p>
                     </div>
-
-                    <div class="project-card fade-in">
-                        <h3>🏥 Quantum Breast Cancer Classification</h3>
-                        <p>
-                            A quantum-classical hybrid neural network for medical diagnosis, developed for the FLIQ-Q Hackathon. Implements Variational Quantum Algorithms (VQAs) for enhanced breast cancer classification with explainable AI features.
+                    <div class="glass-panel research-card" style="text-align: left; padding: 2.5rem;">
+                        <h3 style="margin-bottom: 1.5rem; font-size: 1.75rem; letter-spacing: -0.02em;"><span class="status-dot"></span>Applied Machine Learning & Co-Design</h3>
+                        <p class="body-md" style="margin-bottom: 1.5rem;">
+                            Our ambition extends beyond theoretical physics into practical, high-impact utility. With a deep pedigree in classical artificial intelligence—spanning computer vision, physics-informed neural networks, and generative deep learning—we architect hybrid neural networks carefully tailored for high-dimensional and non-convex parameter spaces.
                         </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/FLIQ-Q-Hackathon-UNICC-Challenge-QuantumBreast-Cancer-Classification-Quantum-Buddies-Submission" class="project-link" target="_blank">View Project</a>
-                        </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Jupyter Notebook</span>
-                            <span>⚕️ Healthcare AI</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <h3>🧠 Quantum Continuous Thought Machines</h3>
-                        <p>
-                            A PyTorch-based implementation of hybrid quantum-classical continuous-thought machines, integrating quantum circuits into recurrent memory mechanisms for complex sequential tasks including RL, classification, and maze solving.
+                        <p class="body-md" style="color: var(--ash);">
+                            We are intensely focused on hardware-software co-design, studying how specific noise topologies dictate algorithmic feasibility. This approach translates directly to applications in combinatorial optimization and complex market simulations. By participating in global hackathons and open-source initiatives, we continuously bridge algorithmic blueprints with immediate, industry-facing challenges.
                         </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/quantum-continuous-thought-machines" class="project-link" target="_blank">View Project</a>
-                        </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Python</span>
-                            <span>🤖 Quantum ML</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card fade-in">
-                        <h3>🔬 QPoland Quantum Hackathon</h3>
-                        <p>
-                            Our submission for the QPoland Quantum Hackathon featuring a hybrid approach combining Weisfeiler-Lehman graph kernels with Continuous-Time Quantum Walks (CTQW) for molecular graph classification, advancing quantum machine learning in computational chemistry.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/Quantum-Buddies/qpoland-quantum-hackathon" class="project-link" target="_blank">View Project</a>
-                        </div>
-                        <div class="project-meta">
-                            <span class="language-tag">Python</span>
-                            <span>🏅 Hackathon</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- ==========================================
+             SECTION 6: TEAM — "The Architects"
+             Mood: Human warmth, deep purple glow
+             ========================================== -->
+        <section id="team" data-mood="architects">
+            <div class="container">
+                <p class="label-sm section-heading" style="margin-bottom: 1rem;">The Team</p>
+                <h2 class="display-md section-heading">The Architects.</h2>
+                <div class="section-divider"></div>
+                <div class="team-grid">
+                    <div class="glass-panel glass-panel--purple team-card" data-tilt>
+                        <span class="member-role">Chief Executive Officer</span>
+                        <h3 class="member-name">Sid Iliyasu</h3>
+                        <p class="member-affiliation">Imperial College London</p>
+                        <p class="member-bio">
+                            PhD researcher in Robotics and MSc Design Engineering. Focused on practical use cases for
+                            quantum algorithms where product usability and real experimentation need to meet.
+                        </p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple team-card" data-tilt>
+                        <span class="member-role">Chief Operating Officer</span>
+                        <h3 class="member-name">Dat Chi (Ryan) Le</h3>
+                        <p class="member-affiliation">University of Sheffield</p>
+                        <p class="member-bio">
+                            Theoretical Physics, researching quantum machine learning at the Sheffield Quantum Centre.
+                            Co-founder of QNNOVATION — specialised quantum data for real-world problems. Exposed to both
+                            academic and industry-facing quantum work.
+                        </p>
+                    </div>
+                    <div class="glass-panel glass-panel--purple team-card" data-tilt>
+                        <span class="member-role">Chief Technology Officer</span>
+                        <h3 class="member-name">Gyanateet Dutta</h3>
+                        <p class="member-affiliation">University of Leeds</p>
+                        <p class="member-bio">
+                            Electronics & Computer Science (Artificial Intelligence) with open-source, research, and
+                            hackathon
+                            experience spanning machine learning, quantum algorithms and computational software.
+                            Published work in computer
+                            vision, physics-informed neural networks, and quantum-hardware co-design.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECTION 7: CONTACT — "The Horizon"
+             Mood: Full circle, calm return to void
+             ========================================== -->
+        <section id="contact" data-mood="horizon">
+            <div class="container">
+                <div class="footer-inner">
+                    <div>
+                        <p class="label-sm" style="margin-bottom: 0.5rem; color: var(--smoke);">Ryoushi Research
+                            Collective &copy; 2026</p>
+                        <p class="footer-location">United Kingdom / Global</p>
+                    </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/Quantum-Buddies" target="_blank" rel="noopener">GitHub</a>
+                        <a href="mailto:contact@ryoushi.org">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <h3>Quantum Buddies</h3>
-                    <p>Advancing quantum computing research and applications</p>
-                </div>
-                <div class="social-links">
-                    <a href="https://github.com/Quantum-Buddies" class="social-link" target="_blank">📚</a>
-                    <a href="mailto:contact@quantumbuddies.org" class="social-link">📧</a>
-                </div>
-            </div>
-            <p>&copy; 2025 Quantum Buddies. Licensed under MIT License.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Fade in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-            }
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
+
 </html>
